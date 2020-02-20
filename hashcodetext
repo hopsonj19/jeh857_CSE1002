@@ -1,0 +1,51 @@
+list1 = []
+list2 = []
+booklist = []
+librarylist = []
+sendlist = []
+
+def listmaker(file):
+    file = open(file, "r")
+    file1 = file.readlines()
+    for line in file1:
+        list1.append(line)
+    for num in list1:
+        x = num.split()
+        list2.append(x)
+    variablemaker(list2)
+
+def variablemaker(list):
+    b = list[0][0]
+    l = list[0][1]
+    d = list[0][2]
+    counter = 0
+    #print(list[1])
+    for item in list[1]:
+        booklist.append(item)
+    for i in range(0, int(l)):
+        librarylist.append(list[2+counter])
+        counter = counter + 2
+    counter = 0
+    signon = 0
+    #print(librarylist)
+    for library in librarylist:
+        if signon < int(d):
+            sendnum = (int(d) - int(librarylist[counter][1])-signon)/int(librarylist[counter][2])
+            sendlist.append(int(sendnum))
+            signon = signon + int(librarylist[counter][1])
+            counter = counter + 1
+    #print(sendlist)
+    display(l)
+
+
+def display(l):
+    print(l)
+    counter = 0
+    for i in range(0, int(l)):
+        print(i, sendlist[i])
+        for i in range(0, sendlist[i]):
+            print(list2[3 + counter][i])
+        counter = counter + 2
+    counter = 0
+
+listmaker("a_example.txt")
